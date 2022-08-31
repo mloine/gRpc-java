@@ -10,9 +10,11 @@ import java.io.IOException;
 public class GrpcServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Server start = ServerBuilder.forPort(8080).addService(
-                new NewsService()
-        ).addService(new SmsService()).build().start();
+        Server start = ServerBuilder.forPort(8080)
+                .addService(new NewsService())
+                .addService(new SmsService())
+                .build()
+                .start();
         System.out.println(String.format("GRPC PORT %d", start.getPort()));
         start.awaitTermination();
 

@@ -8,6 +8,7 @@ package sms;
 service SmsService {
   rpc send(SmsRequest) returns (stream SmsResponse) {}
   rpc createPhone(stream PhoneRequest) returns (PhoneNumberResponse) {}
+  rpc createAndSendSms(stream PhoneRequest) returns (stream PhoneNumberResponse) {}
 }
 
 message SmsRequest{

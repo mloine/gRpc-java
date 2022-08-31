@@ -89,6 +89,37 @@ public final class SmsServiceGrpc {
     return getCreatePhoneMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.mloine.sms.proto.SmsProto.PhoneRequest,
+      com.mloine.sms.proto.SmsProto.PhoneNumberResponse> getCreateAndSendSmsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "createAndSendSms",
+      requestType = com.mloine.sms.proto.SmsProto.PhoneRequest.class,
+      responseType = com.mloine.sms.proto.SmsProto.PhoneNumberResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<com.mloine.sms.proto.SmsProto.PhoneRequest,
+      com.mloine.sms.proto.SmsProto.PhoneNumberResponse> getCreateAndSendSmsMethod() {
+    io.grpc.MethodDescriptor<com.mloine.sms.proto.SmsProto.PhoneRequest, com.mloine.sms.proto.SmsProto.PhoneNumberResponse> getCreateAndSendSmsMethod;
+    if ((getCreateAndSendSmsMethod = SmsServiceGrpc.getCreateAndSendSmsMethod) == null) {
+      synchronized (SmsServiceGrpc.class) {
+        if ((getCreateAndSendSmsMethod = SmsServiceGrpc.getCreateAndSendSmsMethod) == null) {
+          SmsServiceGrpc.getCreateAndSendSmsMethod = getCreateAndSendSmsMethod =
+              io.grpc.MethodDescriptor.<com.mloine.sms.proto.SmsProto.PhoneRequest, com.mloine.sms.proto.SmsProto.PhoneNumberResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "createAndSendSms"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.mloine.sms.proto.SmsProto.PhoneRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.mloine.sms.proto.SmsProto.PhoneNumberResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new SmsServiceMethodDescriptorSupplier("createAndSendSms"))
+              .build();
+        }
+      }
+    }
+    return getCreateAndSendSmsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -151,6 +182,13 @@ public final class SmsServiceGrpc {
       return asyncUnimplementedStreamingCall(getCreatePhoneMethod(), responseObserver);
     }
 
+    /**
+     */
+    public io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneRequest> createAndSendSms(
+        io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneNumberResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getCreateAndSendSmsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -167,6 +205,13 @@ public final class SmsServiceGrpc {
                 com.mloine.sms.proto.SmsProto.PhoneRequest,
                 com.mloine.sms.proto.SmsProto.PhoneNumberResponse>(
                   this, METHODID_CREATE_PHONE)))
+          .addMethod(
+            getCreateAndSendSmsMethod(),
+            asyncBidiStreamingCall(
+              new MethodHandlers<
+                com.mloine.sms.proto.SmsProto.PhoneRequest,
+                com.mloine.sms.proto.SmsProto.PhoneNumberResponse>(
+                  this, METHODID_CREATE_AND_SEND_SMS)))
           .build();
     }
   }
@@ -199,6 +244,14 @@ public final class SmsServiceGrpc {
         io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneNumberResponse> responseObserver) {
       return asyncClientStreamingCall(
           getChannel().newCall(getCreatePhoneMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneRequest> createAndSendSms(
+        io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneNumberResponse> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(getCreateAndSendSmsMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -242,6 +295,7 @@ public final class SmsServiceGrpc {
 
   private static final int METHODID_SEND = 0;
   private static final int METHODID_CREATE_PHONE = 1;
+  private static final int METHODID_CREATE_AND_SEND_SMS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -276,6 +330,9 @@ public final class SmsServiceGrpc {
       switch (methodId) {
         case METHODID_CREATE_PHONE:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.createPhone(
+              (io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneNumberResponse>) responseObserver);
+        case METHODID_CREATE_AND_SEND_SMS:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.createAndSendSms(
               (io.grpc.stub.StreamObserver<com.mloine.sms.proto.SmsProto.PhoneNumberResponse>) responseObserver);
         default:
           throw new AssertionError();
@@ -330,6 +387,7 @@ public final class SmsServiceGrpc {
               .setSchemaDescriptor(new SmsServiceFileDescriptorSupplier())
               .addMethod(getSendMethod())
               .addMethod(getCreatePhoneMethod())
+              .addMethod(getCreateAndSendSmsMethod())
               .build();
         }
       }

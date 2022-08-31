@@ -2539,11 +2539,13 @@ public final class SmsProto {
       "umber\030\001 \003(\t\022\017\n\007content\030\002 \001(\t\"\035\n\013SmsRespo" +
       "nse\022\016\n\006result\030\001 \001(\t\"#\n\014PhoneRequest\022\023\n\013p" +
       "honeNumber\030\001 \001(\t\"%\n\023PhoneNumberResponse\022" +
-      "\016\n\006result\030\001 \001(\t2{\n\nSmsService\022-\n\004send\022\017." +
-      "sms.SmsRequest\032\020.sms.SmsResponse\"\0000\001\022>\n\013" +
-      "createPhone\022\021.sms.PhoneRequest\032\030.sms.Pho" +
-      "neNumberResponse\"\000(\001B\"\n\024com.mloine.sms.p" +
-      "rotoB\010SmsProtoP\000b\006proto3"
+      "\016\n\006result\030\001 \001(\t2\302\001\n\nSmsService\022-\n\004send\022\017" +
+      ".sms.SmsRequest\032\020.sms.SmsResponse\"\0000\001\022>\n" +
+      "\013createPhone\022\021.sms.PhoneRequest\032\030.sms.Ph" +
+      "oneNumberResponse\"\000(\001\022E\n\020createAndSendSm" +
+      "s\022\021.sms.PhoneRequest\032\030.sms.PhoneNumberRe" +
+      "sponse\"\000(\0010\001B\"\n\024com.mloine.sms.protoB\010Sm" +
+      "sProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

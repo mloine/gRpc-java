@@ -49,4 +49,32 @@ public class SmsService extends SmsServiceGrpc.SmsServiceImplBase {
             }
         };
     }
+
+
+    @Override
+    public StreamObserver<SmsProto.PhoneRequest> createAndSendSms(StreamObserver<SmsProto.PhoneNumberResponse> responseObserver) {
+        return new StreamObserver<SmsProto.PhoneRequest>() {
+
+            int i = 0;
+
+            @Override
+            public void onNext(SmsProto.PhoneRequest phoneRequest) {
+                System.out.println(phoneRequest.getPhoneNumber() + "\t手机号已经匹配");
+                responseObserver.onNext(SmsProto.PhoneNumberResponse.newBuilder().setResult(phoneRequest.getPhoneNumber() + "\t 已发送部分经理").build());
+                responseObserver.onNext(SmsProto.PhoneNumberResponse.newBuilder().setResult(phoneRequest.getPhoneNumber() + "\t 已发送客户经理").build());
+                responseObserver.onNext(SmsProto.PhoneNumberResponse.newBuilder().setResult(phoneRequest.getPhoneNumber() + "\t 已发送目标经理").build());
+                i++;
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                responseObserver.onCompleted();
+            }
+        };
+    }
 }
