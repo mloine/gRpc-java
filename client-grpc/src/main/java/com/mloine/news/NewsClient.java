@@ -11,7 +11,7 @@ public class NewsClient {
 
     private static final String host = "localhost";
 
-    private static final int port = 8080;
+    private static final int port = 9090;
 
     public static void main(String[] args) {
 
